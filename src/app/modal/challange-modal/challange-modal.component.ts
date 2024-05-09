@@ -29,7 +29,7 @@ export class ChallangeModalComponent {
   copyLink(){
     if(this._wordleService.isValid(this.word)){
       const encodedWord = btoa(this.word);
-      const link = `https://example.com?word=${encodedWord}`;
+      const link = `https://ng-wordle-w2ka.vercel.app?word=${encodedWord}`;
       this.clipboard.copy(link);
       this.showInvalidWordError.set(false);
       this.showLinkCopied.set(true);
