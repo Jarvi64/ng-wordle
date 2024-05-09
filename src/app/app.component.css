@@ -1,0 +1,102 @@
+.row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+
+.cell {
+  width: 50px;
+  height: 50px;
+  border: 2px solid #ccc;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 32px;
+  font-weight:bolder;
+    margin-right: 5px;
+  text-transform: uppercase;
+}
+
+.incorrect {
+  background-color: #787C7E;
+  color: #fff;
+}
+
+.misplaced {
+  background-color: #C9B458;
+  color: #fff;
+}
+
+.correct {
+  background-color: #6AAA64;
+  color: #fff;
+}
+
+
+
+.flip{
+  animation: flip 500ms ease forwards;
+}
+@keyframes flip {
+  0% {
+    transform: scaleY(0.5);
+  }
+
+  25% {
+    transform: scaleY(1);
+  }
+
+  50% {
+    transform: scaleY(0);
+  }
+
+  75% {
+    transform: scaleY(0.5);
+  }
+
+  100% {
+    transform: scaleY(1);
+  }
+}
+
+.keys2{
+  align-self: center;
+}
+.keys3,.keys2,.keys1{
+  display: flex;
+  justify-content: center;
+  margin:2px;
+
+}
+button{
+  width: 43px;
+  height: 58px;
+  color:black;
+  font-size: 16px;
+  border: none;
+  font-weight: bold;
+  border-radius: 5px;
+  margin: 2px 3px;
+  background-color:#D3D6DA;
+  cursor: pointer;
+}
+button:hover {
+  background-color: #ffffff;
+  color:black;
+}
+.bkspc,.Enter{
+  width: 65px;
+}
+.Restart{
+  display: flex;
+  justify-content: center;
+}
+#btn{
+  width:fit-content;
+  height: 35px;
+  background-color: #04a324;
+  cursor: pointer;
+  color: black;
+  font-weight: bold;
+  border-radius: 5px;
+}

@@ -1,0 +1,18 @@
+<h2 mat-dialog-title>Hi {{'there'}}</h2>
+<mat-dialog-content>
+  <p>What's your favorite animal?</p>
+  <mat-form-field>
+    <mat-label>Favorite Animal</mat-label>
+    <input matInput [(ngModel)]="word">
+    @if(showInvalidWordError()){
+      <mat-hint class="redd">Please enter a valid word.</mat-hint>
+    }
+    @if(showLinkCopied()){
+      <mat-hint class="greenn">Link copied succefully</mat-hint>
+    }
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="copyLink()">Copy Link</button>
+  <!-- <button mat-button [mat-dialog-close]="data.animal" cdkFocusInitial>Ok</button> -->
+</mat-dialog-actions>
