@@ -5,6 +5,7 @@ import { NgClass } from '@angular/common';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import { ChallangeModalComponent } from './modal/challange-modal/challange-modal.component';
+import { ResultDialogComponent } from './modal/result-dialog/result-dialog.component';
 
 
 
@@ -138,10 +139,12 @@ export class AppComponent implements OnInit{
 
       }
       if(word===this.goal){
-        this._snackBar.open('sucess is yours', 'ok');
+        // this._snackBar.open('sucess is yours', 'ok');
+        this.openGameResultModal(true);
       }
       else if (this.userInput.length===this.current_row){
-        this._snackBar.open('you lose', 'ok');
+        // this._snackBar.open('you lose', 'ok');
+        this.openGameResultModal(false, this.goal);
       }
       else{
         this.current_row++;
@@ -168,6 +171,19 @@ export class AppComponent implements OnInit{
       console.log('The dialog was closed');
     });
   }
+
+  openGameResultModal(isWin: boolean, correctWord?: string) {
+    const dialogRef = this.dialog.open(ResultDialogComponent, {
+      data: { isWin, correctWord: correctWord || '' },
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if(result){
+        this.restartGame();
+      }
+    });
+  }
+
 
   restartGame() {
     // Reset game state variables

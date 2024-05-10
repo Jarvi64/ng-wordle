@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>{{ data.isWin ? 'You Win!' : 'You Lost!' }}</h2>
+    <mat-dialog-content>
+      @if(data.isWin){
+        <p>Congratulations! You guessed the word correctly.</p>
+      }
+      @else {
+        <p>Better luck next time. The word was: {{ data.correctWord }}</p>
+      }
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-button [mat-dialog-close]="true">Restart Game</button>
+    </mat-dialog-actions>
