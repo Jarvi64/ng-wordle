@@ -1,5 +1,5 @@
 import { Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChild, ViewChildren, inject } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ActivatedRoute, RouterOutlet } from '@angular/router';
 import { targetWords, words } from './word';
 import { NgClass } from '@angular/common';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -17,8 +17,6 @@ import { ChallangeModalComponent } from './modal/challange-modal/challange-modal
 })
 export class AppComponent implements OnInit{
 
-  ngOnInit(): void {
-  }
 
   title = 'ng-wordle';
   maxGuesses: number = 6; // Default value, can be changed
@@ -26,7 +24,8 @@ export class AppComponent implements OnInit{
   rows = Array.from({ length: this.maxGuesses }, (_, i) => i + 1);
   columns = Array.from({ length: this.wordLength }, (_, i) => i + 1);
   current_row = 1;
-  goal = targetWords[Math.floor(Math.random() * targetWords.length)];
+  goal = '';
+  // goal = targetWords[Math.floor(Math.random() * targetWords.length)];
   // goal = 'maxim'
   keyboardRows: string[][] = [
     ['Q', 'W', 'E', 'R', 'T', 'Y', 'U', 'I', 'O', 'P'],
@@ -42,8 +41,15 @@ export class AppComponent implements OnInit{
   @ViewChildren('keys') keyRefs?: QueryList<ElementRef>;
   private _snackBar =  inject(MatSnackBar);
   private dialog =  inject(MatDialog);
+  route = inject(ActivatedRoute);
 
 
+
+  ngOnInit(): void {
+    this.route.queryParams.subscribe(params => {
+      let word = params['word'];
+      this.goal = word? atob(word) : targetWords[Math.floor(Math.random() * targetWords.length)];;
+  })}
   @HostListener('document:keydown', ['$event'])
   handleInput(event: KeyboardEvent) {
 
