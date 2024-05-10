@@ -56,6 +56,8 @@ export class AppComponent implements OnInit{
 
     const key = event.key.toLowerCase();
     console.log(event);
+    console.log(this.userInput);
+
 
     if (key.match(/^[a-zA-Z]$/) && this.userInput[this.current_row - 1].length < this.wordLength) {
       this.userInput[this.current_row - 1] += key;
@@ -166,6 +168,42 @@ export class AppComponent implements OnInit{
       console.log('The dialog was closed');
     });
   }
-}
+
+  restartGame() {
+    // Reset game state variables
+    this.maxGuesses = 6;
+    this.rows = Array.from({ length: this.maxGuesses }, (_, i) => i + 1);
+    this.current_row = 1;
+    this.goal = targetWords[Math.floor(Math.random() * targetWords.length)];
+    this.userInput = ['', '', '', '', '', ''];
+    // Clear any highlighted cells or keyboard keys
+    this.clearHighlights();
+  }
+
+  clearHighlights() {
+    // Clear classes from cell elements
+    if (this.cellRefs) {
+      this.cellRefs.forEach(cellRef => {
+        this.renderer.removeClass(cellRef.nativeElement, 'flip');
+        this.renderer.removeClass(cellRef.nativeElement, 'correct');
+        this.renderer.removeClass(cellRef.nativeElement, 'incorrect');
+        this.renderer.removeClass(cellRef.nativeElement, 'misplaced');
+        // Add more classes if needed
+      });
+    }
+
+    // Clear classes from keyboard key elements
+    if (this.keyRefs) {
+      this.keyRefs.forEach(keyRef => {
+        this.renderer.removeClass(keyRef.nativeElement, 'correct');
+        this.renderer.removeClass(keyRef.nativeElement, 'incorrect');
+        this.renderer.removeClass(keyRef.nativeElement, 'misplaced');
+        // Add more classes if needed
+      });
+    }
+  }
+  }
+
+
 
 

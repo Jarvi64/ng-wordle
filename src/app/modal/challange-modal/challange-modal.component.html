@@ -1,11 +1,11 @@
-<h2 mat-dialog-title>Hi {{'there'}}</h2>
+<h2 mat-dialog-title>Challange a friend</h2>
 <mat-dialog-content>
-  <p>What's your favorite animal?</p>
+  <p>Write a 5 letter word</p>
   <mat-form-field>
-    <mat-label>Favorite Animal</mat-label>
+    <mat-label>Word</mat-label>
     <input matInput [(ngModel)]="word">
     @if(showInvalidWordError()){
-      <mat-hint class="redd">Please enter a valid word.</mat-hint>
+      <mat-hint class="redd">Please enter a valid 5 letter word.</mat-hint>
     }
     @if(showLinkCopied()){
       <mat-hint class="greenn">Link copied succefully</mat-hint>
