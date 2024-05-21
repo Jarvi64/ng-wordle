@@ -1,0 +1,22 @@
+<h2 mat-dialog-title>Multi-Player </h2>
+<mat-dialog-content>
+  <p>Choose whether to create a new room or join an existing room by entering the room ID.</p>
+  <mat-radio-group [(ngModel)]="selectedOption">
+    <mat-radio-button value="join">Join Room</mat-radio-button>
+    <mat-radio-button value="create">Create Room</mat-radio-button>
+  </mat-radio-group>
+  <div>
+    @if(selectedOption === 'join'){
+      <mat-form-field>
+        <mat-label>Room ID</mat-label>
+        <input matInput [(ngModel)]="roomId">
+        @if(showInvalidRoomError()){
+          <mat-hint class="redd">Room does not exist.</mat-hint>
+        }
+      </mat-form-field>
+    }
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="continue()" [disabled]="selectedOption === 'join' && !roomId">Continue</button>
+</mat-dialog-actions>
