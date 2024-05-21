@@ -54,7 +54,7 @@ export class MultiplayerComponent implements OnInit,AfterViewInit {
     this.socketService.socket.on('player_joined',(word:string) => {
       this.wordService.goal = word;
       this.playerJoined.set(true);
-      this.startCountdown();
+      // this.startCountdown();
     });
     this.wordService.renderer = this.renderer;
     this.socketService.socket.on('key_update',(event:any)=>{

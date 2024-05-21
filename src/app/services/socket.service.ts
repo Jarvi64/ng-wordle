@@ -9,7 +9,7 @@ export class SocketService {
   public socket: any;
   roomId:string = '';
   constructor() {
-    this.socket = io('http://localhost:3000');
+    this.socket = io('https://wordle-socket.vercel.app');
     this.socket.on('connect', () => {
       console.log('Connected to server');
     });
