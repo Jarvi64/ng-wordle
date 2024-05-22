@@ -196,6 +196,7 @@ export class MultiplayerService {
     this.goal = targetWords[Math.floor(Math.random() * targetWords.length)];
     this.userInput = ['', '', '', '', '', ''];
     this.oppInput = ['', '', '', '', '', ''];
+    this.gameOver.set(false);
     this.clearHighlights();
   }
 

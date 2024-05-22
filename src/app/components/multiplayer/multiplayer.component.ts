@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChildren, effect, inject, signal } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, QueryList, Renderer2, ViewChildren, effect, inject, signal } from '@angular/core';
 import { WordleService } from '../../services/wordle.service';
 import { NgClass } from '@angular/common';
 import { SocketService } from '../../services/socket.service';
@@ -13,7 +13,7 @@ import { MultiplayerService } from '../../services/multiplayer.service';
   templateUrl: './multiplayer.component.html',
   styleUrl: './multiplayer.component.css'
 })
-export class MultiplayerComponent implements OnInit,AfterViewInit {
+export class MultiplayerComponent implements OnInit,AfterViewInit,OnDestroy {
 
   wordService = inject(MultiplayerService);
   keyboardRows: string[][] = [
@@ -69,6 +69,11 @@ export class MultiplayerComponent implements OnInit,AfterViewInit {
     })
 
   }
+
+  ngOnDestroy(): void {
+      this.wordService.restartGame();
+  }
+
   ngAfterViewInit(): void {
     this.wordService.cellRefs = this.cellRefs;
     this.wordService.cellOppRefs = this.cellReff;

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, HostListener, OnInit, QueryList, Renderer2, ViewChildren, inject } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, QueryList, Renderer2, ViewChildren, inject } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { ActivatedRoute } from '@angular/router';
 import { ChallangeModalComponent } from '../../modal/challange-modal/challange-modal.component';
@@ -15,7 +15,7 @@ import { JoinRoomModalComponent } from '../../modal/join-room-modal/join-room-mo
   templateUrl: './single-player.component.html',
   styleUrl: './single-player.component.css'
 })
-export class SinglePlayerComponent implements OnInit,AfterViewInit{
+export class SinglePlayerComponent implements OnInit,AfterViewInit,OnDestroy{
 
 
   keyboardRows: string[][] = [
@@ -42,6 +42,10 @@ export class SinglePlayerComponent implements OnInit,AfterViewInit{
     })
     this.wordService.renderer = this.renderer;
 
+}
+
+ngOnDestroy(): void {
+  this.wordService.restartGame();
 }
 
 ngAfterViewInit(): void {
