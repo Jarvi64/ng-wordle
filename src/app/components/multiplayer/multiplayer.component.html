@@ -1,6 +1,11 @@
 <!-- <button (click)="openDialog()">Challange a freind</button>
 <button (click)="wordService.restartGame()">Restart Game</button> -->
 <!-- <p>this.countdown()</p> -->
+
+<button (click)="copyRoom()" mat-stroked-button color="primary">copy room id</button>
+@if(!playerJoined()){
+  <p class="warn">server might take upto 90 seconds to wake up</p>
+}
   <div class="grid-container">
     <div class="grid">
       @for(row of wordService.rows;let rowIndex = $index;track rowIndex){
@@ -51,7 +56,7 @@
                  <button #keys class="bkspc" (click)="onKeyClick(key)"><svg xmlns="http://www.w3.org/2000/svg" height="24" width="27.5" viewBox="0 0 640 512"><!--!Font Awesome Free 6.5.2 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free Copyright 2024 Fonticons, Inc.--><path fill="#FFFFFF" d="M576 64H205.3A64 64 0 0 0 160 82.8L9.4 233.4c-12.5 12.5-12.5 32.8 0 45.3L160 429.3c12 12 28.3 18.8 45.3 18.8H576c35.4 0 64-28.7 64-64V128c0-35.4-28.7-64-64-64zm-84.7 254.1c6.3 6.3 6.3 16.4 0 22.6l-22.6 22.6c-6.3 6.3-16.4 6.3-22.6 0L384 301.3l-62.1 62.1c-6.3 6.3-16.4 6.3-22.6 0l-22.6-22.6c-6.3-6.3-6.3-16.4 0-22.6L338.8 256l-62.1-62.1c-6.3-6.3-6.3-16.4 0-22.6l22.6-22.6c6.3-6.3 16.4-6.3 22.6 0L384 210.8l62.1-62.1c6.3-6.3 16.4-6.3 22.6 0l22.6 22.6c6.3 6.3 6.3 16.4 0 22.6L429.3 256l62.1 62.1z"/></svg></button>
                }
                @else {
-                 <button #keys (click)="onKeyClick(key)">{{ key }}</button>
+                 <button #keys class="key" (click)="onKeyClick(key)">{{ key }}</button>
                }
              }
            </div>

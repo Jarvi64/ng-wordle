@@ -2,14 +2,15 @@ import { AfterViewInit, Component, ElementRef, HostListener, OnDestroy, OnInit, 
 import { WordleService } from '../../services/wordle.service';
 import { NgClass } from '@angular/common';
 import { SocketService } from '../../services/socket.service';
-
+import {Clipboard} from '@angular/cdk/clipboard';
 import { targetWords } from '../../word';
 import { MultiplayerService } from '../../services/multiplayer.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-multiplayer',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass,MatButtonModule],
   templateUrl: './multiplayer.component.html',
   styleUrl: './multiplayer.component.css'
 })
@@ -31,6 +32,8 @@ export class MultiplayerComponent implements OnInit,AfterViewInit,OnDestroy {
   @ViewChildren('keys') keyRefs?: QueryList<ElementRef>;
   playerJoined = signal(false);
   socketService = inject(SocketService);
+  clipboard = inject(Clipboard);
+
 
   @HostListener('window:keydown', ['$event'])
 
@@ -95,6 +98,10 @@ export class MultiplayerComponent implements OnInit,AfterViewInit,OnDestroy {
 
       }
     }, 1000);
+  }
+
+  copyRoom(){
+    this.clipboard.copy(this.socketService.roomId);
   }
 
 }
